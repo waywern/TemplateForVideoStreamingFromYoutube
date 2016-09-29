@@ -17,6 +17,7 @@ public class Template_For_Fragment_LiveStream extends Fragment {
 
     private Button mPlayButton;
     private Button mStopButton;
+    private VideoView vv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
@@ -24,25 +25,21 @@ public class Template_For_Fragment_LiveStream extends Fragment {
         View v = inflater.inflate(R.layout.template_for_fragment_livestream, parent, false);
         String vidAddress = "https://youtu.be/Gy5PC5Auoak?list=PLsrdvvUQRdC7bXS_RQb_XpW5JlmmT6oft";
         Uri vidUri = Uri.parse(vidAddress);
-        VideoView vv = (VideoView)v.findViewById(R.id.videoView);
+        vv = (VideoView)v.findViewById(R.id.videoView);
 
         vv.setVideoURI(vidUri);
 
-
-
-
-
-
-        mPlayButton = (Button)v.findViewById(R.id.hellomoon_playButton);
+        mPlayButton = (Button)v.findViewById(R.id.start);
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mPlayer.play(getActivity());
+                vv.stopPlayback();
+                vv.start();
             }
         });
-        mStopButton = (Button)v.findViewById(R.id.hellomoon_stopButton);
+        mStopButton = (Button)v.findViewById(R.id.stop);
         mStopButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mPlayer.stop();
+                vv.stopPlayback();
             }
         });
         return v;
